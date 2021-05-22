@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 582494348}
   - component: {fileID: 582494349}
   m_Layer: 5
-  m_Name: EnemyHPSilder
+  m_Name: EnemyHPSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
