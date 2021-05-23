@@ -1121,6 +1121,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1468052156}
   - component: {fileID: 1468399315}
+  - component: {fileID: 1468399317}
+  - component: {fileID: 1468399316}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1141,6 +1143,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.2
+--- !u!135 &1468399316
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468399314}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1468399317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468399314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80c467cb750624998b81e3bb8f23fd26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectPrefab: {fileID: 100006, guid: 44dd4fdbb6f10429a844c51183a4c84e, type: 3}
+  damageSound: {fileID: 8300000, guid: 602db8aca3715413fb3ae09e8a28cb31, type: 3}
+  destroySound: {fileID: 8300000, guid: e529f2e06fcb54a7095477c3f30c80a3, type: 3}
+  playerHP: 5
 --- !u!23 &1470314666
 MeshRenderer:
   m_ObjectHideFlags: 0
