@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -13,6 +14,19 @@ public class PlayerHealth : MonoBehaviour
 
     public int playerHP;
 
+    // 13で追加
+    private Slider playerHPSlider;
+
+    // 13で追加
+    private void Start()
+    {
+        playerHPSlider = GameObject.Find("PlayerHPSlider").GetComponent<Slider>();
+
+        playerHPSlider.maxValue = playerHP;
+
+        playerHPSlider.value = playerHP;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("EnemyMissile"))
@@ -20,6 +34,9 @@ public class PlayerHealth : MonoBehaviour
             playerHP -= 1;
 
             AudioSource.PlayClipAtPoint(damageSound, Camera.main.transform.position);
+
+            // 13で追加
+            playerHPSlider.value = playerHP;
 
             Destroy(other.gameObject);
 
