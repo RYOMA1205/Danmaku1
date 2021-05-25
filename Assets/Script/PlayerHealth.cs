@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -67,9 +68,21 @@ public class PlayerHealth : MonoBehaviour
                 // プレイヤーを破壊するのではなく、非アクティブ状態にする(ポイント)
                 this.gameObject.SetActive(false);
 
-                // 15で追加
-                // リトライの命令ブロックを1秒後に呼び出す
-                Invoke("Retry", 1.0f);
+                // 16で追加
+                // 破壊された回数によって場合分けを行います
+                if (destroyCount < 5)
+                {
+                    // 15で追加
+                    // リトライの命令ブロックを1秒後に呼び出す
+                    Invoke("Retry", 1.0f);
+                }
+                else
+                {
+                    // ゲームオーバーシーンに遷移する
+                    // (ポイント)GameOverはシーンの名前と一言一句全て同じにする
+                    SceneManager.LoadScene("GameOVer");
+                }
+                
             }
         }
     }
