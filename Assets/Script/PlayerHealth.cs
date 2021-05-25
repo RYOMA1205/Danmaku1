@@ -66,6 +66,10 @@ public class PlayerHealth : MonoBehaviour
 
                 // プレイヤーを破壊するのではなく、非アクティブ状態にする(ポイント)
                 this.gameObject.SetActive(false);
+
+                // 15で追加
+                // リトライの命令ブロックを1秒後に呼び出す
+                Invoke("Retry", 1.0f);
             }
         }
     }
@@ -86,5 +90,17 @@ public class PlayerHealth : MonoBehaviour
                 playerIcons[i].SetActive(false);
             }
         }
+    }
+
+    // 15で追加
+    // ゲームリトライに関する命令ブロック
+    void Retry()
+    {
+        this.gameObject.SetActive(true);
+
+        // ここの数値は自身で設定しているプレイヤーのHP数にすること
+        playerHP = 5;
+
+        playerHPSlider.value = playerHP;
     }
 }
