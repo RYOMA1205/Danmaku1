@@ -15,6 +15,11 @@ public class EnemyHealth : MonoBehaviour
     // 10で追加
     private Slider slider;
 
+    // 19で追加(スコア)
+    public int scoreValue;
+
+    private ScoreManager sm;
+
     // 10で追加
     private void Start()
     {
@@ -26,6 +31,11 @@ public class EnemyHealth : MonoBehaviour
 
         // スライダーの現在地の設定
         slider.value = enemyHP;
+
+        // 19で追加(スコア)
+        // 「ScoreLabel」オブジェクトについている
+        // 「ScoreManager」スクリプトにアクセスして取得する(ポイント)
+        sm = GameObject.Find("ScoreLabel").GetComponent<ScoreManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -57,6 +67,11 @@ public class EnemyHealth : MonoBehaviour
 
                 // 破壊の効果音を出す
                 AudioSource.PlayClipAtPoint(destroySound, transform.position);
+
+                // 19で追加(スコア)
+                // 敵を破壊した瞬間にスコアを加算するメソッドを呼び出す
+                // 引数には「scoreValue」を入れる
+                sm.AddScore(scoreValue);
             }
         }
     }
