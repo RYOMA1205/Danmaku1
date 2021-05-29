@@ -19,7 +19,9 @@ public class NWay : MonoBehaviour
             // Quaternion.Euler(x, y, z)
             // 今回は「i = 0の時 → y = -30」「i = 1の時 → y = -15」「i = 2の時 → y = 0」「i = 3の時 → y = 15」「i = 4の時 → y = 30」になるようにする
             // 改造(箱の作成)
-            GameObject enemyFireMissile = Instantiate(enemyFireMissilePrefab, transform.position, Quaternion.Euler(0, -30 +(15 * i), 0));
+            // 4で追加
+            // 小数の場合は「f」を必ずつけること。fを忘れるとエラーになります(ポイント)
+            GameObject enemyFireMissile = Instantiate(enemyFireMissilePrefab, transform.position, Quaternion.Euler(0, 7.5f - (7.5f * wayNumber) + (15 * i), 0));
 
             // SetParent()は親子関係を作るメソッド(ポイント)
             // 『このスクリプトが付いているNWayオブジェクトをenemyFireMissileクローンの親に設定する』
