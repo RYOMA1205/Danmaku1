@@ -11,21 +11,36 @@ public class FireMissile : MonoBehaviour
 
     public AudioClip fireSound;
 
+    // 1で追加(長押し連射)
+    private int timeCount;
+
     void Update()
     {
-        if (Input.GetButtonDown("Jump"))
+        // 1で追加(長押し連射)
+        timeCount += 1;
+
+        // 1で追加(長押し連射)
+        //「GetButtonDown」を「GetBuutton」に変更する(ポイント)
+        // 「GetBuuton」は「押している間」という意味
+        if (Input.GetButton("Jump"))
         {
-            // プレハブからミサイルオブジェクトを作成し、それをmissileという名前の箱に入れる
-            GameObject missile = Instantiate(missilePrefab, transform.position, Quaternion.identity);
+            // 1で追加(長押し連射)
+            // 「5」の部分の数字を変えると「連射の感覚」を変更することができます(ポイント)
+            // 「％」と「==」の意味合いを復習する
+            if (Input.GetButton("Jump"))
+            {
+                // プレハブからミサイルオブジェクトを作成し、それをmissileという名前の箱に入れる
+                GameObject missile = Instantiate(missilePrefab, transform.position, Quaternion.identity);
 
-            Rigidbody missileRb = missile.GetComponent<Rigidbody>();
+                Rigidbody missileRb = missile.GetComponent<Rigidbody>();
 
-            missileRb.AddForce(transform.forward * missileSpeed);
+                missileRb.AddForce(transform.forward * missileSpeed);
 
-            AudioSource.PlayClipAtPoint(fireSound, transform.position);
+                AudioSource.PlayClipAtPoint(fireSound, transform.position);
 
-            // 発射したミサイルを2秒後に破壊(削除する)
-            Destroy(missile, 2.0f);
+                // 発射したミサイルを2秒後に破壊(削除する)
+                Destroy(missile, 2.0f);
+            }
         }
     }
 }
