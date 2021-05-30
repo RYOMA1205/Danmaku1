@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyFireMissileB : MonoBehaviour
 {
+    // 5で作成
     public GameObject enemyMissilePrefab;
 
     public float speed;
@@ -24,6 +25,14 @@ public class EnemyFireMissileB : MonoBehaviour
 
             // 10秒後に敵のミサイルを削除する
             Destroy(missile, 10f);
+        }
+
+        // 6で追加
+        // timeCountが500になった時、このオブジェクトにRotateスクリプトを付加する
+        // 同時にRotation Yに90を設定する
+        if (timeCount == 500)
+        {
+            this.gameObject.AddComponent<Rotate>().pos = new Vector3(0, 90, 0);
         }
     }
 }
