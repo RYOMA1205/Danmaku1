@@ -11,9 +11,15 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        float moveH = Input.GetAxis("Horizontal") * moveSpeed;
+        // 9で改良(下記の2行をコメントアウトする)
+        //float moveH = Input.GetAxis("Horizontal") * moveSpeed;
 
-        float moveV = Input.GetAxis("Vertical") * moveSpeed;
+        //float moveV = Input.GetAxis("Vertical") * moveSpeed;
+
+        // 9で改良(下記の2行を追加する)
+        float moveH = -Input.GetAxis("Mouse X") * moveSpeed;
+
+        float moveV = -Input.GetAxis("Mouse Y") * moveSpeed;
 
         transform.Translate(moveH, 0, moveV);
 

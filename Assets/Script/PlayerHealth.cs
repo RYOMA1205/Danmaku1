@@ -26,6 +26,9 @@ public class PlayerHealth : MonoBehaviour
     // プレイヤーが破壊された回数のデータを入れる箱
     public int destroyCount = 0;
 
+    // 8で追加(無敵)
+    public bool isMuteki = false;
+
     // 13で追加
     private void Start()
     {
@@ -38,7 +41,9 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("EnemyMissile"))
+        // 8で追加(無敵)
+        // 条件文の中に「&&　isMuteki == false」を追加
+        if (other.gameObject.CompareTag("EnemyMissile") && isMuteki == false)
         {
             playerHP -= 1;
 
@@ -115,5 +120,50 @@ public class PlayerHealth : MonoBehaviour
         playerHP = 5;
 
         playerHPSlider.value = playerHP;
+
+        // 8で追加(無敵)
+        isMuteki = true;
+        Invoke("MutekiOff", 2.0f);
+    }
+
+    // 8で追加(無敵)
+    void MutekiOff()
+    {
+        isMuteki = false;
+    }
+
+    // 11で追加(HP回復アイテム)
+    // 「public」を付けること(ポイント)
+    public void AddHP(int amount)
+    {
+        // 「amount」分だけHPを回復させる
+        playerHP += amount;
+
+        // 最大HP以上には回復しないようにする
+        if (playerHP > 5)
+        {
+            playerHP = 5;
+        }
+
+        // HPスライダー
+        playerHPSlider.value = playerHP;
+    }
+
+    // 12で追加(自機1UPアイテム)
+    // 「public」を付けること(ポイント)
+    public void Player1Up(int amount)
+    {
+        // amount分だけ自機の残機を回復させる
+        // (考え方)破壊された回数(「destroyCount」)をamount分だけ減少させる
+        destroyCount -= amount;
+
+        // 最大残機数を超えないようにする(破壊された回数が0未満にならないようにする)
+        if (destroyCount < 0)
+        {
+            destroyCount = 0;
+        }
+
+        // 残機数を表示するアイコンを復活させる
+        UpdatePlayerIcons();
     }
 }
