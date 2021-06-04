@@ -22,7 +22,9 @@ public class EnemyHealth : MonoBehaviour
     private ScoreManager sm;
 
     // 15で追加(アイテム出現)
-    public GameObject itemPrefab;
+    // 「配列」(ポイント)
+    // 16で改良(ランダム出現)
+    public GameObject[] itemPrefab;
 
     // 10で追加
     private void Start()
@@ -77,9 +79,15 @@ public class EnemyHealth : MonoBehaviour
                 // 引数には「scoreValue」を入れる
                 sm.AddScore(scoreValue);
 
+                // 16で追加(ランダム出現)
+                // ランダムメソッドの活用(ポイント)
+                GameObject dropItem = itemPrefab[Random.Range(0, itemPrefab.Length)];
+
                 // 15で追加(アイテム出現)
                 // 敵を破壊した瞬間=敵のHPが0になった瞬間にアイテムプレハブを実体化させる
-                Instantiate(itemPrefab, transform.position, Quaternion.identity);
+                // 16で改良(ランダム出現)
+                // ランダムに選んだアイテムを実体化する
+                Instantiate(dropItem, transform.position, Quaternion.identity);
             }
         }
     }

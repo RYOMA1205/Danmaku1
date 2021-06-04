@@ -1505,7 +1505,11 @@ MonoBehaviour:
   enemyHP: 3
   slider: {fileID: 582494349}
   scoreValue: 350
-  itemPrefab: {fileID: 2271609100627253014, guid: b3d4de846ee3a4871b8923690cb241db, type: 3}
+  itemPrefab:
+  - {fileID: 5827451290705818672, guid: 628bd92a0d52946c7b1d29540d1db64b, type: 3}
+  - {fileID: 1831517493481411632, guid: 6246889e65b4e4f0f8c5ba913cbaaa11, type: 3}
+  - {fileID: 2271609100627253014, guid: b3d4de846ee3a4871b8923690cb241db, type: 3}
+  - {fileID: 7326310042813688546, guid: bb90e7c6d6cb94cdba4b4e4908d660dc, type: 3}
 --- !u!1 &865376482
 GameObject:
   m_ObjectHideFlags: 0
