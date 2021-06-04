@@ -21,6 +21,9 @@ public class EnemyHealth : MonoBehaviour
 
     private ScoreManager sm;
 
+    // 15で追加(アイテム出現)
+    public GameObject itemPrefab;
+
     // 10で追加
     private void Start()
     {
@@ -73,6 +76,10 @@ public class EnemyHealth : MonoBehaviour
                 // 敵を破壊した瞬間にスコアを加算するメソッドを呼び出す
                 // 引数には「scoreValue」を入れる
                 sm.AddScore(scoreValue);
+
+                // 15で追加(アイテム出現)
+                // 敵を破壊した瞬間=敵のHPが0になった瞬間にアイテムプレハブを実体化させる
+                Instantiate(itemPrefab, transform.position, Quaternion.identity);
             }
         }
     }
