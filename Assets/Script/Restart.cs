@@ -9,6 +9,6 @@ public class Restart : MonoBehaviour
     // 先頭に「public」をつけること(ポイント)
     public void OnRestartButtonClicked()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Stage1");
     }
 }

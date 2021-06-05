@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class StageNumber : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class StageNumber : MonoBehaviour
     void Start()
     {
         // 「Text」コンポーネントにアクセスして取得する
+        stageNumberText = this.gameObject.GetComponent<Text>();
+
+        // 17で追加
+        // 現在のシーンの名前を取得してtextプロパティにセットする(ポイント)
         stageNumberText = this.gameObject.GetComponent<Text>();
     }
 

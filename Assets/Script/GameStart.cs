@@ -9,6 +9,6 @@ public class GameStart : MonoBehaviour
     // 先頭に「public」をつけること(ポイント)
     public void OnGAMESTARTButtonClicked()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Stage1");
     }
 }
