@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 301779682}
   m_Layer: 0
   m_Name: EnemyA
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1044,6 +1044,8 @@ MonoBehaviour:
   - {fileID: 1831517493481411632, guid: 6246889e65b4e4f0f8c5ba913cbaaa11, type: 3}
   - {fileID: 2271609100627253014, guid: b3d4de846ee3a4871b8923690cb241db, type: 3}
   - {fileID: 7326310042813688546, guid: bb90e7c6d6cb94cdba4b4e4908d660dc, type: 3}
+  nextSceneNumber: 3
+  clearSound: {fileID: 8300000, guid: a4ba9bd5db5844e50bc1f496304da059, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

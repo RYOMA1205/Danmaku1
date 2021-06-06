@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -25,6 +26,11 @@ public class EnemyHealth : MonoBehaviour
     // 「配列」(ポイント)
     // 16で改良(ランダム出現)
     public GameObject[] itemPrefab;
+
+    // 21で追加(ステージクリア)
+    public int nextSceneNumber;
+
+    public AudioClip clearSound;
 
     // 10で追加
     private void Start()
@@ -68,8 +74,14 @@ public class EnemyHealth : MonoBehaviour
             // 敵のHPが0になったら敵オブジェクトを破壊する
             if (enemyHP == 0)
             {
+                // 21で変更(ステージクリア)
+                // ↓下記の1行を「//」で「コメントアウト」にする(重要ポイント)
                 // 親オブジェクトを破壊する(ポイント;この使い方を覚えよう!)
-                Destroy(transform.root.gameObject);
+                // Destroy(transform.root.gameObject);
+
+                // 21で追加(ステージクリア)
+                // 親オブジェクトを非表示にする
+                transform.root.gameObject.SetActive(false);
 
                 // 破壊の効果音を出す
                 AudioSource.PlayClipAtPoint(destroySound, transform.position);
@@ -88,7 +100,25 @@ public class EnemyHealth : MonoBehaviour
                 // 16で改良(ランダム出現)
                 // ランダムに選んだアイテムを実体化する
                 Instantiate(dropItem, transform.position, Quaternion.identity);
+
+                // 21で追加(ステージクリア)
+                // (条件)親オブジェクトに「Boss」というTagがついていたならば(ポイント)
+                if (this.gameObject.transform.root.CompareTag("Boss"))
+                {
+                    // クリア音を鳴らす
+                    AudioSource.PlayClipAtPoint(clearSound, Camera.main.transform.position);
+
+                    // 1秒後にシーン遷移のメソッドを実行する
+                    Invoke("GoNextStage", 1);
+                }
             }
         }
+    }
+
+    // 21で追加(ステージクリア)
+    // シーン遷移のメソッド
+    void GoNextStage()
+    {
+        SceneManager.LoadScene(nextSceneNumber);
     }
 }
