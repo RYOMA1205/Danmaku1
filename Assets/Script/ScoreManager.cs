@@ -6,7 +6,15 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     // 19で作成
-    private int score = 0;
+    // 22で変更
+    //private int score = 0;
+
+    // 22で追加
+    // 静的変数(ポイント)
+    // public staticをつけることで、このScoreManagerスクリプトがついている
+    // 他のオブジェクトとscoreのデータを共有することができる様になります
+    // 下記の1行を記載する
+    public static int score = 0;
 
     private Text scoreLabel;
 
