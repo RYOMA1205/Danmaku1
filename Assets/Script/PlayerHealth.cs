@@ -30,9 +30,15 @@ public class PlayerHealth : MonoBehaviour
     // 8で追加(無敵)
     public bool isMuteki = false;
 
+    // 24で追加
+    private ScoreManager scoreManager;
+
     // 13で追加
     private void Start()
     {
+        // 24で追加(ScoreLabelオブジェクトに付いているScoreManagerスクリプトにアクセスする)
+        scoreManager = GameObject.Find("ScoreLabel").GetComponent<ScoreManager>();
+
         // 23で追加
         UpdatePlayerIcons();
 
@@ -87,6 +93,12 @@ public class PlayerHealth : MonoBehaviour
                 }
                 else
                 {
+                    // 24で追加(ゲームオーバーになったら残機数をリセットする)
+                    destroyCount = 0;
+
+                    // 24で追加(ゲームオーバーになったらスコアをリセットする)
+                    scoreManager.ScoreReset();
+
                     // ゲームオーバーシーンに遷移する
                     // (ポイント)GameOverはシーンの名前と一言一句全て同じにする
                     SceneManager.LoadScene("GameOVer");

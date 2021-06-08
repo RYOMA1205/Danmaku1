@@ -34,5 +34,11 @@ public class ScoreManager : MonoBehaviour
         score += amount;
         scoreLabel.text = "Score" + score;
     }
+
+    // 24で追加(スコアデータをリセットするメソッド)
+    public void ScoreReset()
+    {
+        score = 0;
+    }
     
 }
