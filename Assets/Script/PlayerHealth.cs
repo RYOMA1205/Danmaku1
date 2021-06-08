@@ -24,7 +24,8 @@ public class PlayerHealth : MonoBehaviour
 
     // 14で追加
     // プレイヤーが破壊された回数のデータを入れる箱
-    public int destroyCount = 0;
+    // 23で変更
+    public static int destroyCount = 0;
 
     // 8で追加(無敵)
     public bool isMuteki = false;
@@ -32,6 +33,9 @@ public class PlayerHealth : MonoBehaviour
     // 13で追加
     private void Start()
     {
+        // 23で追加
+        UpdatePlayerIcons();
+
         playerHPSlider = GameObject.Find("PlayerHPSlider").GetComponent<Slider>();
 
         playerHPSlider.maxValue = playerHP;
