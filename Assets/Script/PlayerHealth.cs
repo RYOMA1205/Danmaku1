@@ -49,11 +49,14 @@ public class PlayerHealth : MonoBehaviour
         playerHPSlider.value = playerHP;
     }
 
+    // (条件分を3で追加)
+    // 『|| other.gameObject.CompareTag("Enemy") && isMuteki == false』を条件に追加する
+    // ||は「または」の意味(条件Aまたは条件Bのどちらかが成立したとき)
     private void OnTriggerEnter(Collider other)
     {
         // 8で追加(無敵)
         // 条件文の中に「&&　isMuteki == false」を追加
-        if (other.gameObject.CompareTag("EnemyMissile") && isMuteki == false)
+        if (other.gameObject.CompareTag("EnemyMissile") && isMuteki == false || other.gameObject.CompareTag("Enemy") && isMuteki == false)
         {
             playerHP -= 1;
 
