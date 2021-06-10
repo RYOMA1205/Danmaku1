@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyGene : MonoBehaviour
 {
+    // 3で作成
     public GameObject[] enemyPrefabs;
 
     public Vector3 geneValues;
