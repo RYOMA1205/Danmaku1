@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FireMissile : MonoBehaviour
 {
@@ -19,10 +20,20 @@ public class FireMissile : MonoBehaviour
 
     private int shotPower;
 
+    // 5で追加(パワー量の表示)
+    private Slider powerSlider;
+
     // ４で追加(弾切れ発生)
     private void Start()
     {
         shotPower = maxPower;
+
+        // 5で追加(パワー量の表示)
+        powerSlider = GameObject.Find("PowerSlider").GetComponent<Slider>();
+
+        powerSlider.maxValue = maxPower;
+
+        powerSlider.value = shotPower;
     }
 
     void Update()
@@ -46,6 +57,10 @@ public class FireMissile : MonoBehaviour
 
                 // 4で追加(弾切れ発生)
                 shotPower -= 1;
+
+            // 5で追加(パワー量の表示)
+            // なぜこの位置にコードを記述するのか、そのロジックの流れをおさえること(ポイント)
+            powerSlider.value = shotPower;
 
                 if (Input.GetButton("Jump"))
                 {
