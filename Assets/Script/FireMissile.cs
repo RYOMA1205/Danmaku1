@@ -25,6 +25,7 @@ public class FireMissile : MonoBehaviour
 
     // 6で追加(発射パワーの回復)
     // 発射パワーが回復するまでに要する時間(定数)
+    // constは読み取り専用のため一度決めたら上書きできない
     const int RecoveryTime = 10;
 
     // 発射パワー回復までの残り時間
@@ -55,6 +56,11 @@ public class FireMissile : MonoBehaviour
 
     void Update()
     {
+        Shot();
+    }
+
+    private void Shot()
+    {
         // 6で追加(発射パワーの回復)
         if (shotPower <= 0 && counter <= 0)
         {
@@ -65,46 +71,46 @@ public class FireMissile : MonoBehaviour
         // 1で追加(長押し連射)
         timeCount += 1;
 
-            // 1で追加(長押し連射)
-            // 「5」の部分の数字を変えると「連射の感覚」を変更することができます(ポイント)
-            // 「％」と「==」の意味合いを復習する
-            //「GetButtonDown」を「GetBuutton」に変更する(ポイント)
-            // 「GetBuuton」は「押している間」という意味
-            if (Input.GetButton("Jump"))
+        // 1で追加(長押し連射)
+        // 「5」の部分の数字を変えると「連射の感覚」を変更することができます(ポイント)
+        // 「％」と「==」の意味合いを復習する
+        //「GetButtonDown」を「GetBuutton」に変更する(ポイント)
+        // 「GetBuuton」は「押している間」という意味
+        if (Input.GetButton("Jump") && timeCount % 2 == 0)
+        {
+            // 4で追加(弾切れ発生)
+            // ここのロジックをよく復習すること(重要ポイント)
+            if (shotPower <= 0)
             {
-                // 4で追加(弾切れ発生)
-                // ここのロジックをよく復習すること(重要ポイント)
-                if (shotPower <= 0)
-                {
-                    return;
-                }
-
-                // 4で追加(弾切れ発生)
-                shotPower -= 1;
-
-                // 5で追加(パワー量の表示)
-                // なぜこの位置にコードを記述するのか、そのロジックの流れをおさえること(ポイント)
-                powerSlider.value = shotPower;
-
-                if (Input.GetButton("Jump"))
-                {
-                    // プレハブからミサイルオブジェクトを作成し、それをmissileという名前の箱に入れる
-                    GameObject missile = Instantiate(missilePrefab, transform.position, Quaternion.identity);
-
-                    Rigidbody missileRb = missile.GetComponent<Rigidbody>();
-
-                    missileRb.AddForce(transform.forward * missileSpeed);
-
-                    AudioSource.PlayClipAtPoint(fireSound, transform.position);
-
-                    // 発射したミサイルを2秒後に破壊(削除する)
-                    Destroy(missile, 2.0f);
-                }
+                return;
             }
+
+            // 4で追加(弾切れ発生)
+            shotPower -= 1;
+
+            // 5で追加(パワー量の表示)
+            // なぜこの位置にコードを記述するのか、そのロジックの流れをおさえること(ポイント)
+            powerSlider.value = shotPower;
+
+
+            // プレハブからミサイルオブジェクトを作成し、それをmissileという名前の箱に入れる
+            GameObject missile = Instantiate(missilePrefab, transform.position, Quaternion.identity);
+
+            Rigidbody missileRb = missile.GetComponent<Rigidbody>();
+
+            missileRb.AddForce(transform.forward * missileSpeed);
+
+            AudioSource.PlayClipAtPoint(fireSound, transform.position);
+
+            // 発射したミサイルを2秒後に破壊(削除する)
+            Destroy(missile, 2.0f);
+        }
     }
 
     // 6で追加(発射パワーの回復)
     // コルーチン
+    // voidとかの代わり(戻り値)、IEnumeratorを用いると
+    // yieldを利用して一時中断の処理(コルーチン)ができる様になる
     IEnumerator RecoverPower()
     {
         // パワー回復までに必要な時間をセット
