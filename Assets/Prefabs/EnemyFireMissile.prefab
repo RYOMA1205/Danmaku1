@@ -45,3 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMissilePrefab: {fileID: 5274998344433577971, guid: e8ff827cde7b140aaad034f1617da945, type: 3}
   missileSpeed: 450
+  stopTimer: 10
