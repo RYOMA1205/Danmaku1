@@ -30,6 +30,9 @@ public class FireMissile : MonoBehaviour
     // 発射パワー回復までの残り時間
     private int counter;
 
+    // 8で追加(発射パワーの表示)
+    private Slider waitTimeSlider;
+
     // ４で追加(弾切れ発生)
     private void Start()
     {
@@ -41,6 +44,13 @@ public class FireMissile : MonoBehaviour
         powerSlider.maxValue = maxPower;
 
         powerSlider.value = shotPower;
+
+        // 8で追加(発射パワーの表示)
+        waitTimeSlider = GameObject.Find("WaitTimeSlider").GetComponent<Slider>();
+
+        waitTimeSlider.maxValue = RecoveryTime;
+
+        waitTimeSlider.value = RecoveryTime;
     }
 
     void Update()
@@ -107,6 +117,9 @@ public class FireMissile : MonoBehaviour
 
             counter -= 1;
 
+            // 8で追加
+            waitTimeSlider.value = counter;
+
             print("全回復までの残り時間" + counter + "秒");
         }
 
@@ -117,6 +130,10 @@ public class FireMissile : MonoBehaviour
         shotPower = maxPower;
 
         powerSlider.value = shotPower;
+
+        // 8で追加(発射パワーの表示)
+        // 待機時間が終了したら待機ゲージを最初の状態に戻す
+        waitTimeSlider.value = RecoveryTime;
     }
 
     // 7で追加(発射パワーのリセット)
@@ -128,5 +145,9 @@ public class FireMissile : MonoBehaviour
         powerSlider.value = shotPower;
 
         counter = 0;
+
+        // 8で追加(発射パワーの表示)
+        // プレイヤーが破壊されたら待機ゲージを最初の状態に戻す
+        waitTimeSlider.value = RecoveryTime;
     }
 }
