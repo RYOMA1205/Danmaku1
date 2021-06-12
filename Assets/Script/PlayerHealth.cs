@@ -33,9 +33,15 @@ public class PlayerHealth : MonoBehaviour
     // 24で追加
     private ScoreManager scoreManager;
 
+    // 7で追加(発射パワーのリセット)
+    private FireMissile fireMissile;
+
     // 13で追加
     private void Start()
     {
+        // 7で追加(発射パワーのリセット)
+        fireMissile = GameObject.Find("FireMissile").GetComponent<FireMissile>();
+
         // 24で追加(ScoreLabelオブジェクトに付いているScoreManagerスクリプトにアクセスする)
         scoreManager = GameObject.Find("ScoreLabel").GetComponent<ScoreManager>();
 
@@ -142,7 +148,11 @@ public class PlayerHealth : MonoBehaviour
 
         // 8で追加(無敵)
         isMuteki = true;
+
         Invoke("MutekiOff", 2.0f);
+
+        // 7で追加(発射パワーのリセット)
+        fireMissile.ResetPower();
     }
 
     // 8で追加(無敵)

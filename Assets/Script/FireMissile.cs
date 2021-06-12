@@ -72,9 +72,9 @@ public class FireMissile : MonoBehaviour
                 // 4で追加(弾切れ発生)
                 shotPower -= 1;
 
-            // 5で追加(パワー量の表示)
-            // なぜこの位置にコードを記述するのか、そのロジックの流れをおさえること(ポイント)
-            powerSlider.value = shotPower;
+                // 5で追加(パワー量の表示)
+                // なぜこの位置にコードを記述するのか、そのロジックの流れをおさえること(ポイント)
+                powerSlider.value = shotPower;
 
                 if (Input.GetButton("Jump"))
                 {
@@ -117,5 +117,16 @@ public class FireMissile : MonoBehaviour
         shotPower = maxPower;
 
         powerSlider.value = shotPower;
+    }
+
+    // 7で追加(発射パワーのリセット)
+    // プレイヤーが破壊された時、この命令ブロックが呼ばれて実行される様にする(ポイント)
+    public void ResetPower()
+    {
+        shotPower = maxPower;
+
+        powerSlider.value = shotPower;
+
+        counter = 0;
     }
 }
