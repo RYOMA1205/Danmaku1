@@ -119,6 +119,7 @@ public class FireMissile : MonoBehaviour
         // 1秒ずつカウントを進める
         while (counter > 0)
         {
+            // WaitForSeconds()でカッコ内の秒数待つ
             yield return new WaitForSeconds(1.0f);
 
             counter -= 1;
