@@ -29,6 +29,8 @@ public class EnemyXMove : MonoBehaviour
         // pos.zが1以下になった時、進行方向を変化させる
         else
         {
+            isReturn = true;
+
             // x軸がプラス　→方向のベクトル
             // z軸がマイナス　↑方向のベクトル
             // この2つのベクトルを合成すると「↗︎」方向のベクトルになる(→　+　↑　=　↗︎)
