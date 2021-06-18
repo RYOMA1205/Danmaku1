@@ -54,6 +54,8 @@ public class FireMissile : MonoBehaviour
         waitTimeSlider.value = RecoveryTime;
     }
 
+    // 4章の8で修正
+    // どの様な仕組みで「手動発射→自動発射」に変更できるのか確認する
     void Update()
     {
         Shot();
@@ -76,7 +78,7 @@ public class FireMissile : MonoBehaviour
         // 「％」と「==」の意味合いを復習する
         //「GetButtonDown」を「GetBuutton」に変更する(ポイント)
         // 「GetBuuton」は「押している間」という意味
-        if (Input.GetButton("Jump") && timeCount % 2 == 0)
+        if (timeCount % 2 == 0)
         {
             // 4で追加(弾切れ発生)
             // ここのロジックをよく復習すること(重要ポイント)
