@@ -3424,6 +3424,10 @@ PrefabInstance:
       propertyPath: playerIcons.Array.data[4]
       value: 
       objectReference: {fileID: 1455654862}
+    - target: {fileID: 6584974202809457284, guid: 6da633935183a436790eb5e48f020e1e, type: 3}
+      propertyPath: moveSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6584974202809457285, guid: 6da633935183a436790eb5e48f020e1e, type: 3}
       propertyPath: m_Name
       value: Player
